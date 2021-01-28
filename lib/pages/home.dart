@@ -36,9 +36,9 @@ class _HomeState extends State<Home> {
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
         notchMargin: 10,
+        color: Theme.of(context).primaryColor,
         child: Container(
           height: 55,
-          //color: Theme.of(context).primaryColor,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
@@ -56,12 +56,13 @@ class _HomeState extends State<Home> {
                   children: <Widget>[
                     Icon(
                       Icons.home,
-                      color: currentTab == 0 ? Theme.of(context).primaryColor : Colors.grey,
+                      size: currentTab == 0 ? 30 : 20,
+                      color: currentTab == 0 ? Colors.white : Colors.grey.shade200,
                     ),
                     Text(
                       'Home',
                       style: TextStyle(
-                        color: currentTab == 0 ? Theme.of(context).primaryColor : Colors.grey,
+                        color: currentTab == 0 ? Colors.white : Colors.grey.shade200,
                       ),
                     ),
                   ],
@@ -83,12 +84,13 @@ class _HomeState extends State<Home> {
                   children: <Widget>[
                     Icon(
                       Icons.settings,
-                      color: currentTab == 1 ? Theme.of(context).primaryColor : Colors.grey,
+                      size: currentTab == 1 ? 30 : 20,
+                      color: currentTab == 1 ? Colors.white : Colors.grey.shade200,
                     ),
                     Text(
                       'Settings',
                       style: TextStyle(
-                        color: currentTab == 1 ? Theme.of(context).primaryColor : Colors.grey,
+                        color: currentTab == 1 ? Colors.white : Colors.grey.shade200,
                       ),
                     ),
                   ],
