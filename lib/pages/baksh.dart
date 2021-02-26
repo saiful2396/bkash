@@ -54,7 +54,8 @@ class _BkashState extends State<Bkash> {
                           Container(
                             width: 25,
                             height: 25,
-                            padding: EdgeInsets.only(left:6.0, top: 2, bottom: 2),
+                            padding:
+                                EdgeInsets.only(left: 6.0, top: 2, bottom: 2),
                             child: CircleAvatar(
                               backgroundColor: Colors.pink,
                               backgroundImage:
@@ -619,85 +620,53 @@ class _AppDrawerState extends State<AppDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
+      child: Column(
         children: [
+          SizedBox(height: 40),
           ListTile(
-            leading: Icon(Icons.home, size: 30),
+            title: Text(
+              'bKash Menu',
+              style: TextStyle(color: Theme.of(context).primaryColor, fontSize: 24),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(left: 10, right: 200),
+            child: OutlineButton(
+              onPressed: () {},
+              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32.0)),
+              child: Text(
+                'English',
+                style: TextStyle(color: Theme.of(context).primaryColor),
+              ),
+            ),
+          ),
+          ListTile(
+            leading: Icon(Icons.home_outlined, size: 30, color: Theme.of(context).primaryColor,),
             title: Text(
               "Home",
               style: TextStyle(
-                fontSize: 17,
                 fontWeight: FontWeight.w700,
               ),
             ),
             onTap: () => Navigator.of(context).pop(),
           ),
           ListTile(
-            leading: Icon(Icons.ac_unit, size: 30),
+            leading: Icon(Icons.bar_chart, size: 30, color: Theme.of(context).primaryColor,),
             title: Text(
-              "Service",
+              "Statement",
               style: TextStyle(
-                fontSize: 17,
                 fontWeight: FontWeight.w700,
               ),
             ),
           ),
+          Spacer(),
           ListTile(
-            leading: Icon(Icons.laptop, size: 30),
-            title: Text(
-              "Training",
-              style: TextStyle(
-                fontSize: 17,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
+            leading: Icon(Icons.logout, size: 30, color: Theme.of(context).primaryColor,),
+            title: Text('LogOut'),
+            onTap: (){},
           ),
-          Divider(
-            thickness: 1,
-          ),
-          ListTile(
-            title: Text('More Options'),
-          ),
-          ListTile(
-            leading: Icon(Icons.star, size: 30),
-            title: Text(
-              "Rate This App",
-              style: TextStyle(
-                fontSize: 17,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ),
-          ListTile(
-            leading: Icon(Icons.share, size: 30),
-            title: Text(
-              "Sharing is Caring",
-              style: TextStyle(
-                fontSize: 17,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ),
-          ListTile(
-            leading: Icon(Icons.email, size: 30),
-            title: Text(
-              "Send us Feedback",
-              style: TextStyle(
-                fontSize: 17,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ),
-          ListTile(
-            leading: Icon(Icons.access_alarm, size: 30),
-            title: Text(
-              "About | Disclaimer",
-              style: TextStyle(
-                fontSize: 17,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ),
+          SizedBox(height: 40),
         ],
       ),
     );
