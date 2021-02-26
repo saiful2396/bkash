@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import 'settings.dart';
 
-
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
@@ -15,7 +14,7 @@ class _HomeState extends State<Home> {
   int currentTab = 0; // to keep track of active tab index
   final List<Widget> screens = [
     Bkash(),
-    Settings(),
+    Inbox(),
   ]; // to store nested tabs
   final PageStorageBucket bucket = PageStorageBucket();
   Widget currentScreen = Bkash(); // Our first view in viewport
@@ -29,13 +28,17 @@ class _HomeState extends State<Home> {
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.white,
-        child: Icon(Icons.add, color: Colors.black,),
+        child: Icon(
+          Icons.qr_code,
+          color: Theme.of(context).primaryColor,
+          size: 38,
+        ),
         onPressed: () {},
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
-        notchMargin: 10,
+        notchMargin: 6,
         color: Theme.of(context).primaryColor,
         child: Container(
           height: 55,
@@ -55,27 +58,36 @@ class _HomeState extends State<Home> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Icon(
-                      Icons.home,
-                      size: currentTab == 0 ? 30 : 20,
-                      color: currentTab == 0 ? Colors.white : Colors.grey.shade200,
+                      Icons.home_outlined,
+                      size: currentTab == 0 ? 30 : 25,
+                      color:
+                          currentTab == 0 ? Colors.white : Colors.grey.shade200,
                     ),
                     Text(
                       'Home',
                       style: TextStyle(
-                        color: currentTab == 0 ? Colors.white : Colors.grey.shade200,
+                        color: currentTab == 0
+                            ? Colors.white
+                            : Colors.grey.shade200,
                       ),
                     ),
                   ],
                 ),
               ),
+              Padding(
+                padding: const EdgeInsets.only(top: 30.0),
+                child: Text(
+                  'Scan QR',
+                  style: TextStyle(color: Colors.white60),
+                ),
+              ),
               // Right Tab bar icons
-
               MaterialButton(
                 minWidth: 40,
                 onPressed: () {
                   setState(() {
                     currentScreen =
-                        Settings(); // if user taps on this dashboard tab will be active
+                        Inbox(); // if user taps on this dashboard tab will be active
                     currentTab = 1;
                   });
                 },
@@ -83,20 +95,22 @@ class _HomeState extends State<Home> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Icon(
-                      Icons.settings,
-                      size: currentTab == 1 ? 30 : 20,
-                      color: currentTab == 1 ? Colors.white : Colors.grey.shade200,
+                      Icons.forward_to_inbox,
+                      size: currentTab == 1 ? 30 : 25,
+                      color:
+                          currentTab == 1 ? Colors.white : Colors.grey.shade200,
                     ),
                     Text(
-                      'Settings',
+                      'Inbox',
                       style: TextStyle(
-                        color: currentTab == 1 ? Colors.white : Colors.grey.shade200,
+                        color: currentTab == 1
+                            ? Colors.white
+                            : Colors.grey.shade200,
                       ),
                     ),
                   ],
                 ),
               )
-
             ],
           ),
         ),

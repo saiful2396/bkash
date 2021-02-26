@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-class Settings extends StatefulWidget {
+class Inbox extends StatefulWidget {
   @override
-  _SettingsState createState() => _SettingsState();
+  _InboxState createState() => _InboxState();
 }
 
-class _SettingsState extends State<Settings> {
+class _InboxState extends State<Inbox> {
   @override
   Widget build(BuildContext context) {
      return Scaffold(
       appBar: AppBar(
-        title: Text('Settings'),
+        title: Text('Inbox'),
       ),
     );
   }

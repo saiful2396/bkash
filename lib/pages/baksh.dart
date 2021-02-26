@@ -1,23 +1,98 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class Bkash extends StatelessWidget {
+class Bkash extends StatefulWidget {
+  @override
+  _BkashState createState() => _BkashState();
+}
+
+class _BkashState extends State<Bkash> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: ListTile(
-          leading: CircleAvatar(
-            backgroundColor: Colors.transparent.withOpacity(0.2),
-            child: Icon(Icons.person),
+      key: _scaffoldKey,
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(72.0),
+        child: AppBar(
+          flexibleSpace: SafeArea(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(top: 10.0, left: 12.0),
+                  child: CircleAvatar(
+                    radius: 25.0,
+                    backgroundColor: Colors.grey[200],
+                    backgroundImage: NetworkImage(
+                        'https://avatars.githubusercontent.com/u/19409871?s=60&v=4'),
+                  ),
+                ),
+                SizedBox(width: 14.0),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 8.0),
+                    Text('Saiful Islam',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.w400,
+                            letterSpacing: 1.0)),
+                    SizedBox(height: 6.0),
+                    Container(
+                      width: 180,
+                      height: 30,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                      ),
+                      child: Row(
+                        children: [
+                          Container(
+                            width: 25,
+                            height: 25,
+                            padding: EdgeInsets.only(left:6.0, top: 2, bottom: 2),
+                            child: CircleAvatar(
+                              backgroundColor: Colors.pink,
+                              backgroundImage:
+                                  AssetImage('assets/currency.png'),
+                            ),
+                          ),
+                          SizedBox(width: 10),
+                          Text(
+                            'Tab for Balance',
+                            style: TextStyle(
+                              color: Colors.pink,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ],
+            ),
           ),
-          title: Text(
-            'Name',
-            style: TextStyle(color: Colors.white),
-          ),
+          actions: [
+            GestureDetector(
+              onTap: () => _scaffoldKey.currentState.openEndDrawer(),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8, bottom: 8),
+                child: Container(
+                  width: 50,
+                  height: 50,
+                  child: Image.asset('assets/fly.png'),
+                ),
+              ),
+            )
+          ],
         ),
       ),
-      endDrawer: Drawer(),
+      endDrawer: AppDrawer(),
       body: ListView(
         children: [
           Card(
@@ -160,7 +235,7 @@ class Bkash extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left:6.0, right: 6, top: 6),
+            padding: const EdgeInsets.only(left: 6.0, right: 6, top: 6),
             child: Card(
               elevation: 2,
               child: Padding(
@@ -270,7 +345,6 @@ class Bkash extends StatelessWidget {
                               ),
                             ],
                           ),
-
                         ],
                       ),
                     ),
@@ -280,7 +354,7 @@ class Bkash extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left:6.0, right: 6, top: 6),
+            padding: const EdgeInsets.only(left: 6.0, right: 6, top: 6),
             child: Card(
               child: Container(
                 height: 100,
@@ -293,7 +367,7 @@ class Bkash extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left:6.0, right: 6, top: 6),
+            padding: const EdgeInsets.only(left: 6.0, right: 6, top: 6),
             child: Card(
               elevation: 2,
               child: Padding(
@@ -403,7 +477,6 @@ class Bkash extends StatelessWidget {
                               ),
                             ],
                           ),
-
                         ],
                       ),
                     ),
@@ -413,7 +486,7 @@ class Bkash extends StatelessWidget {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(left:6.0, right: 6, top: 6),
+            padding: const EdgeInsets.only(left: 6.0, right: 6, top: 6),
             child: Card(
               elevation: 2,
               child: Padding(
@@ -523,12 +596,105 @@ class Bkash extends StatelessWidget {
                               ),
                             ],
                           ),
-
                         ],
                       ),
                     ),
                   ],
                 ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class AppDrawer extends StatefulWidget {
+  @override
+  _AppDrawerState createState() => _AppDrawerState();
+}
+
+class _AppDrawerState extends State<AppDrawer> {
+  @override
+  Widget build(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        children: [
+          ListTile(
+            leading: Icon(Icons.home, size: 30),
+            title: Text(
+              "Home",
+              style: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+            onTap: () => Navigator.of(context).pop(),
+          ),
+          ListTile(
+            leading: Icon(Icons.ac_unit, size: 30),
+            title: Text(
+              "Service",
+              style: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
+          ListTile(
+            leading: Icon(Icons.laptop, size: 30),
+            title: Text(
+              "Training",
+              style: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
+          Divider(
+            thickness: 1,
+          ),
+          ListTile(
+            title: Text('More Options'),
+          ),
+          ListTile(
+            leading: Icon(Icons.star, size: 30),
+            title: Text(
+              "Rate This App",
+              style: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
+          ListTile(
+            leading: Icon(Icons.share, size: 30),
+            title: Text(
+              "Sharing is Caring",
+              style: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
+          ListTile(
+            leading: Icon(Icons.email, size: 30),
+            title: Text(
+              "Send us Feedback",
+              style: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
+          ListTile(
+            leading: Icon(Icons.access_alarm, size: 30),
+            title: Text(
+              "About | Disclaimer",
+              style: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.w700,
               ),
             ),
           ),
