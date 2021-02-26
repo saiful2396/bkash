@@ -1,353 +1,396 @@
-// import 'package:flutter/material.dart';
-// import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
-//
-// import 'screens.dart';
-//
-// void main() => runApp(MyApp());
-//
-// BuildContext testContext;
-//
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Persistent Bottom Navigation Bar example project',
-//       theme: ThemeData(
-//         primarySwatch: Colors.blue,
-//       ),
-//       home: MainMenu(),
-//       initialRoute: '/',
-//       routes: {
-//         // When navigating to the "/" route, build the FirstScreen widget.
-//         '/first': (context) => MainScreen2(),
-//         // When navigating to the "/second" route, build the SecondScreen widget.
-//         '/second': (context) => MainScreen3(),
-//       },
-//     );
-//   }
-// }
-//
-// class MainMenu extends StatefulWidget {
-//   MainMenu({Key key}) : super(key: key);
-//
-//   @override
-//   _MainMenuState createState() => _MainMenuState();
-// }
-//
-// class _MainMenuState extends State<MainMenu> {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         title: Text("Sample Project"),
-//       ),
-//       body: Column(
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         children: <Widget>[
-//           Center(
-//             child: RaisedButton(
-//               child: Text("Built-in styles example"),
-//               onPressed: () => pushNewScreen(
-//                 context,
-//                 screen: ProvidedStylesExample(
-//                   menuScreenContext: context,
-//                 ),
-//               ),
-//             ),
-//           ),
-//         ],
-//       ),
-//     );
-//   }
-// }
-//
-// // ----------------------------------------- Provided Style ----------------------------------------- //
-//
-// class ProvidedStylesExample extends StatefulWidget {
-//   final BuildContext menuScreenContext;
-//   ProvidedStylesExample({Key key, this.menuScreenContext}) : super(key: key);
-//
-//   @override
-//   _ProvidedStylesExampleState createState() => _ProvidedStylesExampleState();
-// }
-//
-// class _ProvidedStylesExampleState extends State<ProvidedStylesExample> {
-//   PersistentTabController _controller;
-//   bool _hideNavBar;
-//
-//   @override
-//   void initState() {
-//     super.initState();
-//     _controller = PersistentTabController(initialIndex: 0);
-//     _hideNavBar = false;
-//   }
-//
-//   List<Widget> _buildScreens() {
-//     return [
-//       MainScreen(
-//         menuScreenContext: widget.menuScreenContext,
-//         hideStatus: _hideNavBar,
-//         onScreenHideButtonPressed: () {
-//           setState(() {
-//             _hideNavBar = !_hideNavBar;
-//           });
-//         },
-//       ),
-//       MainScreen(
-//         menuScreenContext: widget.menuScreenContext,
-//         hideStatus: _hideNavBar,
-//         onScreenHideButtonPressed: () {
-//           setState(() {
-//             _hideNavBar = !_hideNavBar;
-//           });
-//         },
-//       ),
-//       MainScreen(
-//         menuScreenContext: widget.menuScreenContext,
-//         hideStatus: _hideNavBar,
-//         onScreenHideButtonPressed: () {
-//           setState(() {
-//             _hideNavBar = !_hideNavBar;
-//           });
-//         },
-//       ),
-//       MainScreen(
-//         menuScreenContext: widget.menuScreenContext,
-//         hideStatus: _hideNavBar,
-//         onScreenHideButtonPressed: () {
-//           setState(() {
-//             _hideNavBar = !_hideNavBar;
-//           });
-//         },
-//       ),
-//       MainScreen(
-//         menuScreenContext: widget.menuScreenContext,
-//         hideStatus: _hideNavBar,
-//         onScreenHideButtonPressed: () {
-//           setState(() {
-//             _hideNavBar = !_hideNavBar;
-//           });
-//         },
-//       ),
-//     ];
-//   }
-//
-//   List<PersistentBottomNavBarItem> _navBarsItems() {
-//     return [
-//       PersistentBottomNavBarItem(
-//         icon: Icon(Icons.home),
-//         title: "Home",
-//         activeColor: Colors.blue,
-//         inactiveColor: Colors.grey,
-//       ),
-//       PersistentBottomNavBarItem(
-//         icon: Icon(Icons.search),
-//         title: ("Search"),
-//         activeColor: Colors.teal,
-//         inactiveColor: Colors.grey,
-//       ),
-//       PersistentBottomNavBarItem(
-//         icon: Icon(Icons.add),
-//         title: ("Add"),
-//         activeColor: Colors.blueAccent,
-//         inactiveColor: Colors.grey,
-//         activeColorAlternate: Colors.white,
-//       ),
-//       PersistentBottomNavBarItem(
-//         icon: Icon(Icons.message),
-//         title: ("Messages"),
-//         activeColor: Colors.deepOrange,
-//         inactiveColor: Colors.grey,
-//       ),
-//       PersistentBottomNavBarItem(
-//         icon: Icon(Icons.settings),
-//         title: ("Settings"),
-//         activeColor: Colors.indigo,
-//         inactiveColor: Colors.grey,
-//       ),
-//     ];
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(title: const Text('Navigation Bar Demo')),
-//       drawer: Drawer(
-//         child: Center(
-//           child: Column(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             children: <Widget>[
-//               const Text('This is the Drawer'),
-//             ],
-//           ),
-//         ),
-//       ),
-//       body: PersistentTabView(
-//         context,
-//         controller: _controller,
-//         screens: _buildScreens(),
-//         items: _navBarsItems(),
-//         confineInSafeArea: true,
-//         backgroundColor: Colors.white,
-//         handleAndroidBackButtonPress: true,
-//         resizeToAvoidBottomInset: true,
-//         stateManagement: true,
-//         navBarHeight: MediaQuery.of(context).viewInsets.bottom > 0
-//             ? 0.0
-//             : kBottomNavigationBarHeight,
-//         hideNavigationBarWhenKeyboardShows: true,
-//         margin: EdgeInsets.all(10.0),
-//         popActionScreens: PopActionScreensType.once,
-//         bottomScreenMargin: 0.0,
-//         routeAndNavigatorSettings: RouteAndNavigatorSettings(
-//           initialRoute: '/',
-//           routes: {
-//             '/first': (context) => MainScreen2(),
-//             '/second': (context) => MainScreen3(),
-//           },
-//         ),
-//         onWillPop: () async {
-//           await showDialog(
-//             context: context,
-//             useSafeArea: true,
-//             builder: (context) => Container(
-//               height: 50.0,
-//               width: 50.0,
-//               color: Colors.white,
-//               child: RaisedButton(
-//                 child: Text("Close"),
-//                 onPressed: () {
-//                   Navigator.pop(context);
-//                 },
-//               ),
-//             ),
-//           );
-//           return false;
-//         },
-//         selectedTabScreenContext: (context) {
-//           testContext = context;
-//         },
-//         hideNavigationBar: _hideNavBar,
-//         decoration: NavBarDecoration(
-//             colorBehindNavBar: Colors.indigo,
-//             borderRadius: BorderRadius.circular(20.0)),
-//         popAllScreensOnTapOfSelectedTab: true,
-//         itemAnimationProperties: ItemAnimationProperties(
-//           duration: Duration(milliseconds: 400),
-//           curve: Curves.ease,
-//         ),
-//         screenTransitionAnimation: ScreenTransitionAnimation(
-//           animateTabTransition: true,
-//           curve: Curves.ease,
-//           duration: Duration(milliseconds: 200),
-//         ),
-//         navBarStyle:
-//         NavBarStyle.style15, // Choose the nav bar style with this property
-//       ),
-//     );
-//   }
-// }
-//
-// // ----------------------------------------- Custom Style ----------------------------------------- //
-//
-// class CustomNavBarWidget extends StatelessWidget {
-//   final int selectedIndex;
-//   final List<PersistentBottomNavBarItem> items;
-//   final ValueChanged<int> onItemSelected;
-//
-//   CustomNavBarWidget({
-//     Key key,
-//     this.selectedIndex,
-//     @required this.items,
-//     this.onItemSelected,
-//   });
-//
-//   Widget _buildItem(PersistentBottomNavBarItem item, bool isSelected) {
-//     return Container(
-//       alignment: Alignment.center,
-//       height: kBottomNavigationBarHeight,
-//       child: Column(
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         crossAxisAlignment: CrossAxisAlignment.center,
-//         mainAxisSize: MainAxisSize.min,
-//         children: <Widget>[
-//           Flexible(
-//             child: IconTheme(
-//               data: IconThemeData(
-//                   size: 26.0,
-//                   color: isSelected
-//                       ? (item.activeColorAlternate == null
-//                       ? item.activeColor
-//                       : item.activeColorAlternate)
-//                       : item.inactiveColor == null
-//                       ? item.activeColor
-//                       : item.inactiveColor),
-//               child: item.icon,
-//             ),
-//           ),
-//           Padding(
-//             padding: const EdgeInsets.only(top: 5.0),
-//             child: Material(
-//               type: MaterialType.transparency,
-//               child: FittedBox(
-//                   child: Text(
-//                     item.title,
-//                     style: TextStyle(
-//                         color: isSelected
-//                             ? (item.activeColorAlternate == null
-//                             ? item.activeColor
-//                             : item.activeColorAlternate)
-//                             : item.inactiveColor,
-//                         fontWeight: FontWeight.w400,
-//                         fontSize: 12.0),
-//                   )),
-//             ),
-//           )
-//         ],
-//       ),
-//     );
-//   }
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Container(
-//       color: Colors.white,
-//       child: Container(
-//         width: double.infinity,
-//         height: kBottomNavigationBarHeight,
-//         child: Row(
-//           mainAxisAlignment: MainAxisAlignment.spaceAround,
-//           children: items.map((item) {
-//             int index = items.indexOf(item);
-//             return Flexible(
-//               child: GestureDetector(
-//                 onTap: () {
-//                   this.onItemSelected(index);
-//                 },
-//                 child: _buildItem(item, selectedIndex == index),
-//               ),
-//             );
-//           }).toList(),
-//         ),
-//       ),
-//     );
-//   }
-// }
-import './pages/home.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'bKash UI',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.pink,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: Home() ,
+      home: MyHomePage(),
+      debugShowCheckedModeBanner: false,
+    );
+  }
+}
+
+class MyHomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.grey[200],
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(82.0),
+        child: AppBarWidget(),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.qr_code, color: Colors.pink, size: 40.0),
+        tooltip: 'Increment',
+        elevation: 2.0,
+        backgroundColor: Colors.white,
+        onPressed: () {},
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: BottomNavigationBarWidget(),
+      body: BodyWidget(),
+    );
+  }
+}
+
+class BodyWidget extends StatelessWidget {
+  const BodyWidget({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      physics: BouncingScrollPhysics(),
+      child: Column(
+        children: [
+          Container(
+            color: Colors.white,
+            padding: EdgeInsets.all(12.0),
+            margin: EdgeInsets.only(bottom: 12.0),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    MenuWidget(
+                        title: 'Send Money', image: 'assets/send_money.jpg'),
+                    MenuWidget(
+                        title: 'Recharge', image: 'assets/mobile_recharge.jpg'),
+                    MenuWidget(title: 'Cash Out', image: 'assets/cash_out.jpg'),
+                    MenuWidget(
+                        title: 'Make Payment',
+                        image: 'assets/make_payment.jpg'),
+                  ],
+                ),
+                SizedBox(height: 8.0),
+                Row(
+                  children: [
+                    MenuWidget(
+                        title: 'Add Money', image: 'assets/add_money.jpg'),
+                    MenuWidget(title: 'Pay Bill', image: 'assets/pay_bill.jpg'),
+                    MenuWidget(title: 'Tickets', image: 'assets/tickets.jpg'),
+                    MenuWidget(title: 'More', image: 'assets/more.jpg'),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Card(
+            color: Colors.white,
+            margin: EdgeInsets.only(left: 12.0, right: 12.0, bottom: 12.0),
+            child: Container(
+              width: Size.infinite.width,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('My bKash'),
+                  ),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        CardWidget(
+                            title: 'Saiful Islam',
+                            image: 'assets/mobile_recharge.jpg'),
+                        CardWidget(
+                            title: 'Akash', image: 'assets/make_payment.jpg'),
+                        CardWidget(
+                            title: 'Internet', image: 'assets/pay_bill.jpg'),
+                        CardWidget(
+                            title: 'Card', image: 'assets/add_money.jpg'),
+                        CardWidget(
+                            title: 'Sohel Rana',
+                            image: 'assets/mobile_recharge.jpg'),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+          Card(
+              color: Colors.white,
+              margin: EdgeInsets.only(left: 12.0, right: 12.0, bottom: 12.0),
+              child: Container(
+                width: Size.infinite.width,
+                child: Image.asset('assets/banner.jpg'),
+              )),
+          Card(
+            color: Colors.white,
+            margin: EdgeInsets.only(left: 12.0, right: 12.0, bottom: 12.0),
+            child: Container(
+              width: Size.infinite.width,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Suggestions'),
+                  ),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        CardWidget(
+                            title: 'Card bill', image: 'assets/card_bill.jpg'),
+                        CardWidget(title: 'BTCL', image: 'assets/btcl.jpg'),
+                        CardWidget(
+                            title: 'CoronaBD', image: 'assets/coronabd.jpg'),
+                        CardWidget(
+                            title: 'Donation', image: 'assets/donation.jpg'),
+                        CardWidget(
+                            title: 'MetLife', image: 'assets/metlife.jpg'),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ),
+          Card(
+            color: Colors.white,
+            margin: EdgeInsets.only(left: 12.0, right: 12.0, bottom: 12.0),
+            child: Container(
+              width: Size.infinite.width,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text('Offters'),
+                  ),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        CardWidget(title: 'Daraz', image: 'assets/daraz.jpg'),
+                        CardWidget(title: 'Airtel', image: 'assets/airtel.jpg'),
+                        CardWidget(
+                            title: 'Ajkerdeal', image: 'assets/ajkerdeal.jpg'),
+                        CardWidget(
+                            title: 'Grameenphone',
+                            image: 'assets/grameenphone.jpg'),
+                        CardWidget(title: 'Robi', image: 'assets/robi.jpg'),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class AppBarWidget extends StatelessWidget {
+  const AppBarWidget({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      flexibleSpace: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(top: 10.0, left: 12.0),
+                child: CircleAvatar(
+                  radius: 28.0,
+                  backgroundColor: Colors.grey[200],
+                  backgroundImage: NetworkImage('https://avatars.githubusercontent.com/u/19409871?s=60&v=4'),
+                ),
+              ),
+              SizedBox(width: 14.0),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(height: 8.0),
+                  Text('Saiful Islam',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18.0,
+                          fontWeight: FontWeight.w400,
+                          letterSpacing: 1.0)),
+                  SizedBox(height: 6.0),
+                  Container(
+                    width: 200,
+                    height: 30,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                    ),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 4.0),
+                          child: Container(
+                            width: 25,
+                            height: 25,
+                            padding: EdgeInsets.all(2.0),
+                            child: CircleAvatar(
+                              backgroundColor: Colors.pink,
+                              backgroundImage:
+                              AssetImage('assets/currency.png'),
+                            ),
+                          ),
+                        ),
+                        Text('Tab for Balance',
+                            style: TextStyle(
+                                color: Colors.pink,
+                                fontSize: 18.0,
+                                fontWeight: FontWeight.w600))
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+      actions: [
+        Padding(
+          padding: const EdgeInsets.only(top: 12.0, right: 12.0),
+          child: Container(
+              width: 50, height: 50, child: Image.asset('assets/fly.png')),
+        )
+      ],
+    );
+  }
+}
+
+class BottomNavigationBarWidget extends StatelessWidget {
+  const BottomNavigationBarWidget({
+    Key key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BottomAppBar(
+      color: Colors.pink,
+      notchMargin: 6.0,
+      shape: CircularNotchedRectangle(),
+      child: Container(
+          height: 60,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: <Widget>[
+              MaterialButton(
+                // minWidth: 40,
+                onPressed: () {},
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Icon(Icons.home_outlined, color: Colors.white, size: 30.0),
+                    Text(
+                      'Home',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 30.0),
+                child: Text(
+                  'Scan QR',
+                  style: TextStyle(color: Colors.white60),
+                ),
+              ),
+              MaterialButton(
+                // minWidth: 40,
+                onPressed: () {},
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Icon(Icons.forward_to_inbox,
+                        color: Colors.white60, size: 30.0),
+                    Text(
+                      'Inbox',
+                      style: TextStyle(color: Colors.white60),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          )),
+    );
+  }
+}
+
+class MenuWidget extends StatelessWidget {
+  const MenuWidget({
+    Key key,
+    @required this.title,
+    @required this.image,
+  }) : super(key: key);
+  final String title;
+  final String image;
+
+  @override
+  Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+    return Container(
+      width: size.width / 4 - 6,
+      height: 100,
+      color: Colors.white,
+      child: Column(
+        children: [
+          Image.asset(image),
+          SizedBox(height: 5.0),
+          Text(title,
+              style: TextStyle(color: Colors.black45),
+              overflow: TextOverflow.ellipsis),
+        ],
+      ),
+    );
+  }
+}
+
+class CardWidget extends StatelessWidget {
+  const CardWidget({
+    Key key,
+    @required this.title,
+    @required this.image,
+  }) : super(key: key);
+  final String title;
+  final String image;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: 110,
+      height: 100,
+      color: Colors.white,
+      child: Column(
+        children: [
+          Container(height: 64, child: Image.asset(image)),
+          SizedBox(height: 5.0),
+          Text(title,
+              style: TextStyle(color: Colors.black45),
+              overflow: TextOverflow.ellipsis),
+        ],
+      ),
     );
   }
 }
