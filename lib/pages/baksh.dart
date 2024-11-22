@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Bkash extends StatefulWidget {
+  const Bkash({super.key});
+
   @override
   _BkashState createState() => _BkashState();
 }
@@ -14,8 +16,9 @@ class _BkashState extends State<Bkash> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(72.0),
+        preferredSize: Size.fromHeight(75.0),
         child: AppBar(
+          backgroundColor: Theme.of(context).primaryColor,
           flexibleSpace: SafeArea(
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,7 +67,7 @@ class _BkashState extends State<Bkash> {
                           ),
                           SizedBox(width: 10),
                           Text(
-                            'Tab for Balance',
+                            'Tap for Balance',
                             style: TextStyle(
                               color: Colors.pink,
                               fontWeight: FontWeight.w600,
@@ -80,10 +83,10 @@ class _BkashState extends State<Bkash> {
           ),
           actions: [
             GestureDetector(
-              onTap: () => _scaffoldKey.currentState.openEndDrawer(),
+              onTap: () => _scaffoldKey.currentState?.openEndDrawer(),
               child: Padding(
                 padding: const EdgeInsets.only(top: 8, bottom: 8),
-                child: Container(
+                child: SizedBox(
                   width: 50,
                   height: 50,
                   child: Image.asset('assets/fly.png'),
@@ -105,74 +108,83 @@ class _BkashState extends State<Bkash> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Column(
-                        children: [
-                          CircleAvatar(
-                            backgroundColor: Colors.grey.shade200,
-                            child: Icon(
-                              Icons.source,
+                      Expanded(
+                        child: Column(
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: Colors.grey.shade200,
+                              child: Icon(
+                                Icons.source,
+                              ),
                             ),
-                          ),
-                          Text(
-                            'Send Money',
-                            style: TextStyle(fontSize: 12),
-                          ),
-                        ],
+                            Text(
+                              'Send Money',
+                              style: TextStyle(fontSize: 12),
+                            ),
+                          ],
+                        ),
                       ),
-                      Column(
-                        children: [
-                          CircleAvatar(
-                            backgroundColor: Colors.grey.shade200,
-                            child: FaIcon(
-                              FontAwesomeIcons.moneyBill,
+                      Expanded(
+                        child: Column(
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: Colors.grey.shade200,
+                              child: FaIcon(
+                                FontAwesomeIcons.moneyBill,
+                              ),
                             ),
-                          ),
-                          Text(
-                            'Mobile recharge',
-                            style: TextStyle(fontSize: 12),
-                          ),
-                        ],
+                            Text(
+                              'Mobile recharge',
+                              style: TextStyle(fontSize: 12),
+                            ),
+                          ],
+                        ),
                       ),
-                      Column(
-                        children: [
-                          CircleAvatar(
-                            backgroundColor: Colors.grey.shade200,
-                            child: FaIcon(
-                              FontAwesomeIcons.handshake,
+                      Expanded(
+                        child: Column(
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: Colors.grey.shade200,
+                              child: FaIcon(
+                                FontAwesomeIcons.handshake,
+                              ),
                             ),
-                          ),
-                          Text(
-                            'Cash Out',
-                            style: TextStyle(fontSize: 12),
-                          ),
-                        ],
+                            Text(
+                              'Cash Out',
+                              style: TextStyle(fontSize: 12),
+                            ),
+                          ],
+                        ),
                       ),
-                      Column(
-                        children: [
-                          CircleAvatar(
-                            backgroundColor: Colors.grey.shade200,
-                            child: FaIcon(
-                              FontAwesomeIcons.shoppingBag,
+                      Expanded(
+                        child: Column(
+                          children: [
+                            CircleAvatar(
+                              backgroundColor: Colors.grey.shade200,
+                              child: FaIcon(
+                                FontAwesomeIcons.bagShopping,
+                              ),
                             ),
-                          ),
-                          Text(
-                            'Make Payment',
-                            style: TextStyle(fontSize: 12),
-                          ),
-                        ],
+                            Text(
+                              'Make Payment',
+                              style: TextStyle(fontSize: 12),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
                   SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
                     children: [
                       Expanded(
                         child: Column(
                           children: [
                             CircleAvatar(
                               backgroundColor: Colors.grey.shade200,
-                              child: FaIcon(FontAwesomeIcons.handHoldingUsd),
+                              child: FaIcon(FontAwesomeIcons.handHoldingDollar),
                             ),
                             Text(
                               'Add Money',
@@ -203,7 +215,7 @@ class _BkashState extends State<Bkash> {
                             CircleAvatar(
                               backgroundColor: Colors.grey.shade200,
                               child: FaIcon(
-                                FontAwesomeIcons.ticketAlt,
+                                FontAwesomeIcons.ticketSimple,
                               ),
                             ),
                             Text(
@@ -219,7 +231,7 @@ class _BkashState extends State<Bkash> {
                             CircleAvatar(
                               backgroundColor: Colors.grey.shade200,
                               child: FaIcon(
-                                FontAwesomeIcons.thLarge,
+                                FontAwesomeIcons.tableCellsLarge,
                               ),
                             ),
                             Text(
@@ -251,7 +263,7 @@ class _BkashState extends State<Bkash> {
                       ],
                     ),
                     Divider(),
-                    Container(
+                    SizedBox(
                       height: 60,
                       width: double.infinity,
                       child: ListView(
@@ -307,7 +319,7 @@ class _BkashState extends State<Bkash> {
                               CircleAvatar(
                                 backgroundColor: Colors.grey.shade200,
                                 child: FaIcon(
-                                  FontAwesomeIcons.shoppingBag,
+                                  FontAwesomeIcons.bagShopping,
                                 ),
                               ),
                               Text(
@@ -383,7 +395,7 @@ class _BkashState extends State<Bkash> {
                       ],
                     ),
                     Divider(),
-                    Container(
+                    SizedBox(
                       height: 60,
                       width: double.infinity,
                       child: ListView(
@@ -439,7 +451,7 @@ class _BkashState extends State<Bkash> {
                               CircleAvatar(
                                 backgroundColor: Colors.grey.shade200,
                                 child: FaIcon(
-                                  FontAwesomeIcons.shoppingBag,
+                                  FontAwesomeIcons.bagShopping,
                                 ),
                               ),
                               Text(
@@ -502,7 +514,7 @@ class _BkashState extends State<Bkash> {
                       ],
                     ),
                     Divider(),
-                    Container(
+                    SizedBox(
                       height: 60,
                       width: double.infinity,
                       child: ListView(
@@ -558,7 +570,7 @@ class _BkashState extends State<Bkash> {
                               CircleAvatar(
                                 backgroundColor: Colors.grey.shade200,
                                 child: FaIcon(
-                                  FontAwesomeIcons.shoppingBag,
+                                  FontAwesomeIcons.bagShopping,
                                 ),
                               ),
                               Text(
@@ -612,6 +624,8 @@ class _BkashState extends State<Bkash> {
 }
 
 class AppDrawer extends StatefulWidget {
+  const AppDrawer({super.key});
+
   @override
   _AppDrawerState createState() => _AppDrawerState();
 }
@@ -631,10 +645,8 @@ class _AppDrawerState extends State<AppDrawer> {
           ),
           Padding(
             padding: EdgeInsets.only(left: 10, right: 200),
-            child: OutlineButton(
+            child: OutlinedButton(
               onPressed: () {},
-              materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(32.0)),
               child: Text(
                 'English',
                 style: TextStyle(color: Theme.of(context).primaryColor),

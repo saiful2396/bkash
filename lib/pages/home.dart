@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'settings.dart';
 
 class Home extends StatefulWidget {
+  const Home({super.key});
+
   @override
   _HomeState createState() => _HomeState();
 }
@@ -23,11 +25,12 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageStorage(
-        child: currentScreen,
         bucket: bucket,
+        child: currentScreen,
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.white,
+        shape: CircleBorder(),
         child: Icon(
           Icons.qr_code,
           color: Theme.of(context).primaryColor,
@@ -40,7 +43,7 @@ class _HomeState extends State<Home> {
         shape: CircularNotchedRectangle(),
         notchMargin: 6,
         color: Theme.of(context).primaryColor,
-        child: Container(
+        child: SizedBox(
           height: 55,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
